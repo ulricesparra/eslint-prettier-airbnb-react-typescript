@@ -64,7 +64,7 @@ while ! $finished; do
 done
 
 # Trailing Commas Prompt
-echo "What style of trailing commas do you want to enforce with Prettier?"
+echo "What style of trailing commas do you want to enforce with Prettier? (Recommendation: es5)"
 echo -e "${YELLOW}>>>>> See https://prettier.io/docs/en/options.html#trailing-commas for more details.${NC}"
 select trailing_comma_pref in "none" "es5" "all"; do
   case $trailing_comma_pref in
