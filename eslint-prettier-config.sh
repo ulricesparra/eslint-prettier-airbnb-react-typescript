@@ -48,9 +48,11 @@ else
   echo '{
   "extends": ["airbnb-typescript-prettier"],
   "rules": {
-    "no-console": 0,
-    "@typescript-eslint/explicit-module-boundary-types": 0,
-    "@typescript-eslint/no-unused-vars": 0
+    "no-console": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": ["error"]
   }
 }' >> .eslintrc
 fi
