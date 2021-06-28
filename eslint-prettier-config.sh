@@ -25,17 +25,6 @@ select package_command_choices in "Yarn" "npm" "Cancel"; do
 done
 echo
 
-# File Format Prompt
-echo "Which ESLint and Prettier configuration format do you prefer?"
-select config_extension in ".js" ".json" "Cancel"; do
-  case $config_extension in
-    .js ) config_opening='module.exports = {'; break;;
-    .json ) config_opening='{'; break;;
-    Cancel ) exit;;
-  esac
-done
-echo
-
 # Checks for existing eslintrc files
 if [ -f ".eslintrc.js" -o -f ".eslintrc.yaml" -o -f ".eslintrc.yml" -o -f ".eslintrc.json" -o -f ".eslintrc" ]; then
   echo -e "${RED}Existing ESLint config file(s) found:${NC}"
@@ -53,7 +42,7 @@ finished=false
 
 # Max Line Length Prompt
 while ! $finished; do
-  read -p "What max line length do you want to set for ESLint and Prettier? (Recommendation: 100)"
+  read -p "What max line length do you want to set for ESLint and Prettier? (Recommendation: 100) "
   if [[ $REPLY =~ ^[0-9]{2,3}$ ]]; then
     max_len_val=$REPLY
     finished=true
@@ -91,27 +80,27 @@ if [ "$skip_eslint_setup" == "true" ]; then
   break
 else
   echo
-  echo -e "2/3 ${YELLOW}Building your .eslintrc${config_extension} file...${NC}"
-  > ".eslintrc${config_extension}" # truncates existing file (or creates empty)
+  echo -e "2/3 ${YELLOW}Building your .eslintrc file...${NC}"
+  > ".eslintrc" # truncates existing file (or creates empty)
 
-  echo ${config_opening}'
+  '{
   "extends": [
     "airbnb-typescript-prettier"
   ]
-}' >> .eslintrc${config_extension}
+}' >> .eslintrc
 fi
 
 if [ "$skip_prettier_setup" == "true" ]; then
   break
 else
-  echo -e "3/3 ${YELLOW}Building your .prettierrc${config_extension} file... ${NC}"
-  > .prettierrc${config_extension} # truncates existing file (or creates empty)
+  echo -e "3/3 ${YELLOW}Building your .prettierrc file... ${NC}"
+  > .prettierrc # truncates existing file (or creates empty)
 
-  echo ${config_opening}'
+  '{
   "printWidth": '${max_len_val}',
   "singleQuote": true,
   "trailingComma": "'${trailing_comma_pref}'"
-}' >> .prettierrc${config_extension}
+}' >> .prettierrc
 fi
 
 echo
