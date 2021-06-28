@@ -46,9 +46,12 @@ else
   > ".eslintrc" # truncates existing file (or creates empty)
 
   echo '{
-  "extends": [
-    "airbnb-typescript-prettier"
-  ]
+  "extends": ["airbnb-typescript-prettier"],
+  "rules": {
+    "no-console": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-unused-vars": 0
+  }
 }' >> .eslintrc
 fi
 
