@@ -83,7 +83,7 @@ else
   echo -e "2/3 ${YELLOW}Building your .eslintrc file...${NC}"
   > ".eslintrc" # truncates existing file (or creates empty)
 
-  '{
+  echo '{
   "extends": [
     "airbnb-typescript-prettier"
   ]
@@ -96,7 +96,7 @@ else
   echo -e "3/3 ${YELLOW}Building your .prettierrc file... ${NC}"
   > .prettierrc # truncates existing file (or creates empty)
 
-  '{
+  echo '{
   "printWidth": '${max_len_val}',
   "singleQuote": true,
   "trailingComma": "'${trailing_comma_pref}'"
