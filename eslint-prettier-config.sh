@@ -49,6 +49,7 @@ else
   "extends": ["airbnb-typescript-prettier"],
   "rules": {
     "no-console": "off",
+    "no-nested-ternary": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "no-useless-constructor": "off",
